@@ -1,15 +1,21 @@
 const contact = [
     {
         id: 1,
-        name: "Josue"
+        firsName: "Josue",
+        lastName: "Vidaur",
+        phone: ""
     },
     {
         id: 2,
-        name: "Carlos"
+        firsName: "Carlos",
+        lastName: "Martinez",
+        phone: ""
     },
     {
         id: 3,
-        name: "Maria"
+        firsName: "Maria",
+        lastName: "Larios",
+        phone: ""
     }
 ]
 

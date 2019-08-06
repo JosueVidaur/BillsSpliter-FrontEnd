@@ -11,10 +11,13 @@ class createBill extends React.Component {
         }
     }
 
-    handlerClick = (name)=> {
-        const contactReceived = name;
+    handlerClick = (id) => {
+        const contactReceived = id;
+        console.log(id);
+        console.log('state',this.state);
         this.setState(prevState => {
-            return {contacts: prevState.contacts.concat([contactReceived])}
+            if(!prevState.contacts.find(element => contactReceived === element.id)){
+            return {contacts: prevState.contacts.concat([contactReceived])}}
         })
     }
 
@@ -22,7 +25,7 @@ class createBill extends React.Component {
         return (
             <div>
                 <div>
-                    {Data.map(elem => <Contact key={elem.id} name={elem.name} handlerClick={this.handlerClick}/>)}
+                    {Data.map(elem => <Contact key={elem.id} user={elem} handlerClick={this.handlerClick}/>)}
                 </div>
                 <CreateBill addedContacts={this.state.contacts}/>
             </div>

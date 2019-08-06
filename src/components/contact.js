@@ -4,15 +4,14 @@ export default class Contact extends React.Component {
     constructor(props) {
         super(props);
     }
-    hola(event) {
-        console.log(event.target.value);
+    sendContact(event) {
         this.props.handlerClick(event.target.value)
     }
     render() {
         return (
             <div>
-                <p>{this.props.name}</p>
-                <button onClick={this.hola.bind(this)} value={this.props.name}>add</button>
+                <p>{this.props.user.firstName} {this.props.user.lastName}</p>
+                <button onClick={this.sendContact.bind(this)} value={this.props.user.id} >add</button>
             </div>
         )
     }
