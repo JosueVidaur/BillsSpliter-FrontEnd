@@ -1,5 +1,4 @@
 import React from "react"
-import { Button } from 'grommet'
 
 
 export default class Contact extends React.Component {

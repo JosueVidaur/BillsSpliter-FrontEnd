@@ -2,6 +2,7 @@ import React from 'react'
 import Data from '../components/contactsData'
 import CreateBill from '../components/createBill'
 import Contact from '../components/contact'
+import { Grid , Box } from 'grommet'
 
 class createBill extends React.Component {
     constructor() {
@@ -22,12 +23,16 @@ class createBill extends React.Component {
 
     render() {
         return (
-            <div>
+            <Grid>
                 <div>
                     {Data.map(elem => <Contact key={elem.id} user={elem} handlerClick={this.handlerClick}/>)}
                 </div>
+                <Box align='center'>
+                <div>
                 <CreateBill addedContacts={this.state.contacts}/>
             </div>
+                </Box>
+            </Grid>
         )
     }
 }
