@@ -41,7 +41,7 @@ class createBill extends React.Component {
           ))}
         </Container>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
-New Bill</Modal.Header>
+          <Modal.Header>New Bill</Modal.Header>
           <Modal.Content style={{ display: 'flex' }} contacts>
             <div style={{ width: '30%' }}>
               {Data.map(elem => (
