@@ -10,12 +10,13 @@ export default class Contact extends React.Component {
     }
     render() {
         return (
-            <div>
-                <p>{this.props.user.firstName} {this.props.user.lastName}</p>
-                <Button
-                    label="Add"
+            <div style={{width: "40%"}}>
+                <label>{this.props.user.firstName} {this.props.user.lastName}</label>
+                <button
                     onClick={this.sendContact.bind(this)}
-                />
+                >
+                Add
+                </button>
             </div>
         )
     }

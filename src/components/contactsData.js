@@ -16,6 +16,12 @@ const contact = [
         firstName: "Maria",
         lastName: "Larios",
         phone: ""
+    },
+    {
+        id: 4,
+        firstName: "Carlos",
+        lastName: "Zapata",
+        phone: "1111"
     }
 ]
 
