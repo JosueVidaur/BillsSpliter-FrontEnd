@@ -1,12 +1,15 @@
 import React from 'react';
 import Bill from './container/newBill'
+import { Grid, Box } from 'grommet'
 
 
 function App() {
   return (
-    <div>
+    <Grid>
+    <Box align='center'>
       <Bill />
-    </div>
+    </Box>
+  </Grid>
   );
 }
 

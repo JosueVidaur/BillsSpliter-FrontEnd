@@ -1,8 +1,9 @@
 import React from 'react'
 
 function BillUsers(props) {
-    console.log(props)
-    const billUsers = props.users.map(user => <p>{user}</p>)
+
+   
+    const billUsers = props.users.map(user => <p key={user.id}>{user.firstName}</p>)
     return (
         <div>
             {billUsers}

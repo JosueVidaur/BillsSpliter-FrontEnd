@@ -1,23 +1,28 @@
 import React from "react"
+import { Button } from 'grommet'
+
 
 export default class Contact extends React.Component {
     constructor(props) {
         super(props);
     }
-    sendContact(event) {
-        this.props.handlerClick(event.target.value)
+    sendContact() {
+        this.props.handlerClick(this.props.user)
     }
     render() {
         return (
             <div>
                 <p>{this.props.user.firstName} {this.props.user.lastName}</p>
-                <button onClick={this.sendContact.bind(this)} value={this.props.user.id} >add</button>
+                <Button
+                    label="Add"
+                    onClick={this.sendContact.bind(this)}
+                />
             </div>
         )
     }
-        
-    
-    
+
+
+
 }
 
 

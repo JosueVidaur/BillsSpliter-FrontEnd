@@ -11,13 +11,12 @@ class createBill extends React.Component {
         }
     }
 
-    handlerClick = (id) => {
-        const contactReceived = id;
-        console.log(id);
+    handlerClick = (user) => {
+        console.log('setState',user.id)
         console.log('state',this.state);
         this.setState(prevState => {
-            if(!prevState.contacts.find(element => contactReceived === element.id)){
-            return {contacts: prevState.contacts.concat([contactReceived])}}
+            if(!prevState.contacts.find(element => user.id === element.id)){
+            return {contacts: prevState.contacts.concat([user])}}
         })
     }
 
