@@ -5,7 +5,7 @@ import Contact from '../components/contact';
 import { Container } from 'semantic-ui-react';
 import { Button, Modal } from 'semantic-ui-react';
 
-class createBill extends React.Component {
+class NewBill extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -14,17 +14,43 @@ class createBill extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      contacts: Data
+    });
+  }
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.setState({ open: false });
 
   handlerClick = user => {
-    console.log('setState', user.id);
-    console.log('state', this.state);
-    this.setState(prevState => {
-      if (!prevState.contacts.find(element => user.id === element.id)) {
-        return { contacts: prevState.contacts.concat([user]) };
+    let oldContacts = this.state.contacts;
+    oldContacts = oldContacts.map(contact => {
+      if (contact.id == user.id) {
+        contact.added = true;
       }
+      return contact;
     });
+    this.setState({
+      contacts: oldContacts
+    });
+  };
+
+  handleAmoutChange = modifiedContact => {
+    console.log('modified', modifiedContact);
+    console.log(this.state.contacts);
+    let oldContacts = this.state.contacts;
+    oldContacts = oldContacts.map(contact => {
+      if (contact.id == modifiedContact.id) {
+        contact = modifiedContact;
+        contact.added = true;
+      }
+      return contact;
+    });
+
+    this.setState({
+      contacts: oldContacts
+    });
+    console.log('oldContact', oldContacts);
   };
 
   render() {
@@ -34,6 +60,7 @@ class createBill extends React.Component {
         <Container textAlign='left'>
           {Data.map(elem => (
             <Contact
+              editable={false}
               key={elem.id}
               user={elem}
               handlerClick={this.handlerClick}
@@ -46,6 +73,7 @@ class createBill extends React.Component {
             <div style={{ width: '30%' }}>
               {Data.map(elem => (
                 <Contact
+                  editable={true}
                   key={elem.id}
                   user={elem}
                   handlerClick={this.handlerClick}
@@ -53,18 +81,10 @@ class createBill extends React.Component {
               ))}
             </div>
             <div>
-              <CreateBill addedContacts={this.state.contacts} />
-              <Button color='black' onClick={this.close}>
-                Cancel
-              </Button>
-              <Button
-                positive
-                icon='checkmark'
-                labelPosition='right'
-                onClick={this.close}
-              >
-                Create
-              </Button>
+              <CreateBill
+                addedContacts={this.state.contacts.filter(c => c.added)}
+                handleAmoutChange={this.handleAmoutChange}
+              />
             </div>
           </Modal.Content>
         </Modal>
@@ -74,4 +94,4 @@ class createBill extends React.Component {
   }
 }
 
-export default createBill;
+export default NewBill;

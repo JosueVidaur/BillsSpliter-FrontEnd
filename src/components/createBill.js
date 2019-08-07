@@ -1,5 +1,6 @@
 import React from 'react';
 import BillUsers from './billUsers';
+import { Button } from 'semantic-ui-react';
 
 class CreateBill extends React.Component {
   constructor(props) {
@@ -19,12 +20,7 @@ class CreateBill extends React.Component {
     });
   };
 
-  handlerSubmit = () => {
-    const currentDate = new Date().getDate();
-    this.setState({
-      date: currentDate
-    });
-  };
+  handlerSubmit = () => {};
   render() {
     return (
       <div>
@@ -43,8 +39,21 @@ class CreateBill extends React.Component {
             placeholder='Amount to pay'
             onChange={this.handlerChange}
           />
-          <BillUsers users={this.props.addedContacts} />
-          <button>Create Bill</button>
+          <BillUsers
+            handleOnChange={this.props.handleAmoutChange}
+            users={this.props.addedContacts}
+          />
+          <Button color='black' onClick={this.close}>
+            Cancel
+          </Button>
+          <Button
+            positive
+            icon='checkmark'
+            labelPosition='right'
+            onClick={this.close}
+          >
+            Create
+          </Button>
         </form>
       </div>
     );
