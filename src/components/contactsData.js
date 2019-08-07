@@ -3,25 +3,29 @@ const contact = [
     id: 1,
     firstName: 'Josue',
     lastName: 'Vidaur',
-    phone: ''
+    phone: '',
+    amount: 0
   },
   {
     id: 2,
     firstName: 'Carlos',
     lastName: 'Martinez',
-    phone: ''
+    phone: '',
+    amount: 0
   },
   {
     id: 3,
     firstName: 'Maria',
     lastName: 'Larios',
-    phone: ''
+    phone: '',
+    amount: 0
   },
   {
     id: 4,
     firstName: 'Carlos',
     lastName: 'Zapata',
-    phone: '1111'
+    phone: '1111',
+    amount: 0
   }
 ];
 

@@ -13,10 +13,16 @@ class BillForm extends React.Component {
     };
   }
 
-  handlerChange = event => {
-    const { name, value } = event.target;
+  handlePlaceChange = event => {
     this.setState({
-      [name]: value
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleBillAmountChange = event => {
+    this.props.setBillAmount(event.target.value);
+    this.setState({
+      [event.target.name]: event.target.value
     });
   };
 
@@ -30,16 +36,18 @@ class BillForm extends React.Component {
             name='place'
             value={this.state.place}
             placeholder='Place Name'
-            onChange={this.handlerChange}
+            onChange={this.handlePlaceChange}
           />
           <input
-            type='text'
+            type='number'
+            min='0'
             name='totalAmount'
             value={this.state.totalAmount}
             placeholder='Amount to pay'
-            onChange={this.handlerChange}
+            onChange={this.handleBillAmountChange}
           />
           <BillUsers
+            billAmount={this.props.billAmount}
             onRemove={this.props.onRemove}
             handleOnChange={this.props.handleAmoutChange}
             users={this.props.addedContacts}

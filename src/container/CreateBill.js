@@ -9,10 +9,17 @@ class CreateBill extends React.Component {
   constructor() {
     super();
     this.state = {
+      billAmount: 0,
       contacts: [],
       open: false
     };
   }
+
+  setBillAmount = amount => {
+    this.setState({
+      billAmount: amount
+    });
+  };
 
   componentDidMount() {
     this.setState({
@@ -26,6 +33,7 @@ class CreateBill extends React.Component {
     let oldContacts = this.state.contacts;
     oldContacts = oldContacts.map(contact => {
       if (contact.id == user.id) {
+        contact.amount = 0;
         contact.added = false;
       }
       return contact;
@@ -95,6 +103,8 @@ class CreateBill extends React.Component {
             </div>
             <div>
               <BillForm
+                billAmount={this.state.billAmount}
+                setBillAmount={this.setBillAmount}
                 onRemove={this.removeContactFromBill}
                 addedContacts={this.state.contacts.filter(c => c.added)}
                 handleAmoutChange={this.handleAmoutChange}
