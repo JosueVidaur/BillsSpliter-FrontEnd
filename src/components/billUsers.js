@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Input, Label } from 'semantic-ui-react';
 
 class BillUsers extends React.Component {
   sendAmount = event => {
@@ -37,10 +37,18 @@ class BillUsers extends React.Component {
       <div>
         {this.props.users.map(user => (
           <div>
-            <label key={user.id} style={{ display: 'inline-block' }}>
+            <Label
+              size='large'
+              color='white'
+              key={user.id}
+              style={{ display: 'inline-block' }}
+            >
               {user.firstName} {user.lastName}
-            </label>
-            <input
+            </Label>
+            <Input
+              label={{ basic: true, content: '%' }}
+              labelPosition='right'
+              size='mini'
               type='number'
               min='0'
               max={this.personalPercent(user.id)}
@@ -50,8 +58,11 @@ class BillUsers extends React.Component {
               placeholder='Personal Amount'
               id={user.id}
             />
-            <label id={user.id}>{this.personalAmount(user)}</label>
+            <label style={{ margin: '2px' }} id={user.id}>
+              {this.personalAmount(user)}
+            </label>
             <Button
+              style={{ float: 'right' }}
               size='mini'
               color='red'
               type='button'

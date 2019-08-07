@@ -1,6 +1,6 @@
 import React from 'react';
 import BillUsers from './billUsers';
-import { Button } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 
 class BillForm extends React.Component {
   constructor(props) {
@@ -31,14 +31,14 @@ class BillForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handlerSubmit}>
-          <input
+          <Input
             type='text'
             name='place'
             value={this.state.place}
             placeholder='Place Name'
             onChange={this.handlePlaceChange}
           />
-          <input
+          <Input
             type='number'
             min='0'
             name='totalAmount'
