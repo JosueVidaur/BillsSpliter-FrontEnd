@@ -1,12 +1,12 @@
 import React from 'react';
-import Bill from './container/newBill';
+import CreateBill from './container/CreateBill';
 import { Container } from 'semantic-ui-react';
 
 function App() {
   return (
     <Container>
       <div>
-        <Bill />
+        <CreateBill />
       </div>
     </Container>
   );

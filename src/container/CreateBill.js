@@ -1,11 +1,11 @@
 import React from 'react';
 import Data from '../components/contactsData';
-import CreateBill from '../components/createBill';
+import BillForm from '../components/BillForm';
 import Contact from '../components/contact';
 import { Container } from 'semantic-ui-react';
 import { Button, Modal } from 'semantic-ui-react';
 
-class NewBill extends React.Component {
+class CreateBill extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -22,7 +22,7 @@ class NewBill extends React.Component {
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.setState({ open: false });
 
-  handlerClick = user => {
+  addContactToBill = user => {
     let oldContacts = this.state.contacts;
     oldContacts = oldContacts.map(contact => {
       if (contact.id == user.id) {
@@ -63,7 +63,7 @@ class NewBill extends React.Component {
               editable={false}
               key={elem.id}
               user={elem}
-              handlerClick={this.handlerClick}
+              handlerClick={this.addContactToBill}
             />
           ))}
         </Container>
@@ -76,12 +76,12 @@ class NewBill extends React.Component {
                   editable={true}
                   key={elem.id}
                   user={elem}
-                  handlerClick={this.handlerClick}
+                  handlerClick={this.addContactToBill}
                 />
               ))}
             </div>
             <div>
-              <CreateBill
+              <BillForm
                 addedContacts={this.state.contacts.filter(c => c.added)}
                 handleAmoutChange={this.handleAmoutChange}
               />
@@ -94,4 +94,4 @@ class NewBill extends React.Component {
   }
 }
 
-export default NewBill;
+export default CreateBill;

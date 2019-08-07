@@ -2,7 +2,7 @@ import React from 'react';
 import BillUsers from './billUsers';
 import { Button } from 'semantic-ui-react';
 
-class CreateBill extends React.Component {
+class BillForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,4 +60,4 @@ class CreateBill extends React.Component {
   }
 }
 
-export default CreateBill;
+export default BillForm;
