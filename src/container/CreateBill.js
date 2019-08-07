@@ -22,6 +22,19 @@ class CreateBill extends React.Component {
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.setState({ open: false });
 
+  removeContactFromBill = user => {
+    let oldContacts = this.state.contacts;
+    oldContacts = oldContacts.map(contact => {
+      if (contact.id == user.id) {
+        contact.added = false;
+      }
+      return contact;
+    });
+    this.setState({
+      contacts: oldContacts
+    });
+  };
+
   addContactToBill = user => {
     let oldContacts = this.state.contacts;
     oldContacts = oldContacts.map(contact => {
@@ -82,6 +95,7 @@ class CreateBill extends React.Component {
             </div>
             <div>
               <BillForm
+                onRemove={this.removeContactFromBill}
                 addedContacts={this.state.contacts.filter(c => c.added)}
                 handleAmoutChange={this.handleAmoutChange}
               />

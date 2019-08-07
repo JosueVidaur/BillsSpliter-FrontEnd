@@ -40,6 +40,7 @@ class BillForm extends React.Component {
             onChange={this.handlerChange}
           />
           <BillUsers
+            onRemove={this.props.onRemove}
             handleOnChange={this.props.handleAmoutChange}
             users={this.props.addedContacts}
           />
