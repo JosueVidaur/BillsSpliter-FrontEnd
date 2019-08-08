@@ -2,7 +2,6 @@ import React from 'react';
 import Data from '../components/contactsData';
 import BillForm from '../components/BillForm';
 import Contact from '../components/contact';
-import { Container } from 'semantic-ui-react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 
 class CreateBill extends React.Component {
@@ -10,9 +9,7 @@ class CreateBill extends React.Component {
     super();
     this.state = {
       billAmount: 0,
-      contacts: [],
-      open: false,
-      openContactModal: false
+      contacts: []
     };
   }
 
@@ -29,11 +26,6 @@ class CreateBill extends React.Component {
       contacts: Data
     });
   }
-
-  showAddContact = dimmer => () => {
-    this.setState({ dimmer, openContactModal: true });
-  };
-  closeAddContact = () => this.setState({ openContactModal: false });
 
   removeContactFromBill = user => {
     let oldContacts = this.state.contacts;
@@ -78,62 +70,8 @@ class CreateBill extends React.Component {
   };
 
   render() {
-    const { open, dimmer, dimmerAddContact, openContactModal } = this.state;
     return (
-      <div
-        style={{
-          width: '30%',
-          display: 'inline-block',
-          verticalAlign: 'top',
-          border: ' 1px solid #ccc',
-          heigth: '100%',
-          backgroundColor: '#fff',
-          padding: '0 30px 50px 30px',
-          marginRight: '50px',
-          boxShadow: '#ccc 2px 0px 2px'
-        }}
-      >
-        <div
-          style={{
-            padding: '15px',
-            marginBottom: '30px',
-            borderBottom: '2px solid #ccc'
-          }}
-        >
-          <h1 style={{ textAlign: 'center', color: '#282929' }}>Contacts</h1>
-        </div>
-        <Container textAlign='left'>
-          {Data.map(elem => (
-            <Contact
-              editable={false}
-              key={elem.id}
-              user={elem}
-              handlerClick={this.addContactToBill}
-            />
-          ))}
-        </Container>
-        <Modal
-          dimmer={dimmerAddContact}
-          open={openContactModal}
-          onClose={this.closeAddContact}
-        >
-          <Modal.Header>Add Contact</Modal.Header>
-          <Modal.Content>
-            <Form onSubmit={this.addNewContact}>
-              <Form.Group widths='equal'>
-                <Form.Input label='First Name' placeholder='First Name' />
-                <Form.Input label='Last Name' placeholder='Last Name' />
-                <Form.Input label='Phone' placeholder='Phone Number' />
-              </Form.Group>
-              <Button onClick={this.closeAddContact} color='black'>
-                Cancel
-              </Button>
-              <Button size='small' color='blue'>
-                Add Contact
-              </Button>
-            </Form>
-          </Modal.Content>
-        </Modal>
+      <div>
         <Modal
           dimmer={this.props.dimmer}
           open={this.props.isOpen}
@@ -162,9 +100,6 @@ class CreateBill extends React.Component {
             </div>
           </Modal.Content>
         </Modal>
-        <Button onClick={this.showAddContact('blurring')} color='green'>
-          Add New Contact
-        </Button>
       </div>
     );
   }
