@@ -2,7 +2,7 @@ import React from 'react';
 import Data from '../components/contactsData';
 import BillForm from '../components/BillForm';
 import Contact from '../components/contact';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
 
 class CreateBill extends React.Component {
   constructor() {

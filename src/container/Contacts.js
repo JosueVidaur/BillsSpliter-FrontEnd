@@ -16,7 +16,7 @@ class Contacts extends React.Component {
   closeAddContact = () => this.setState({ openContactModal: false });
 
   render() {
-    const { dimmer, dimmerAddContact, openContactModal } = this.state;
+    const { dimmer, openContactModal } = this.state;
     return (
       <div
         style={{
@@ -28,7 +28,8 @@ class Contacts extends React.Component {
           backgroundColor: '#fff',
           padding: '0 30px 30px 30px',
           marginRight: '50px',
-          boxShadow: '#ccc 2px 0px 2px'
+          boxShadow: '#ccc 2px 0px 2px',
+          float: 'left'
         }}
       >
         <div
