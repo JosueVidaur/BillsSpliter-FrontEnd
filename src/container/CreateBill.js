@@ -35,9 +35,6 @@ class CreateBill extends React.Component {
   };
   closeAddContact = () => this.setState({ openContactModal: false });
 
-  show = dimmer => () => this.setState({ dimmer, open: true });
-  close = () => this.setState({ open: false });
-
   removeContactFromBill = user => {
     let oldContacts = this.state.contacts;
     oldContacts = oldContacts.map(contact => {
@@ -66,8 +63,6 @@ class CreateBill extends React.Component {
   };
 
   handleAmoutChange = modifiedContact => {
-    console.log('modified', modifiedContact);
-    console.log(this.state.contacts);
     let oldContacts = this.state.contacts;
     oldContacts = oldContacts.map(contact => {
       if (contact.id == modifiedContact.id) {
@@ -80,7 +75,6 @@ class CreateBill extends React.Component {
     this.setState({
       contacts: oldContacts
     });
-    console.log('oldContact', oldContacts);
   };
 
   render() {
@@ -140,7 +134,11 @@ class CreateBill extends React.Component {
             </Form>
           </Modal.Content>
         </Modal>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal
+          dimmer={this.props.dimmer}
+          open={this.props.isOpen}
+          onClose={this.props.onCloseCreateBill}
+        >
           <Modal.Header>New Bill</Modal.Header>
           <Modal.Content style={{ display: 'flex' }} contacts>
             <div style={{ width: '30%' }}>
@@ -167,7 +165,6 @@ class CreateBill extends React.Component {
         <Button onClick={this.showAddContact('blurring')} color='green'>
           Add New Contact
         </Button>
-        <Button onClick={this.show('blurring')}>New Bill</Button>
       </div>
     );
   }
