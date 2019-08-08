@@ -13,7 +13,6 @@ class BillUsers extends React.Component {
   };
 
   personalAmount = user => {
-    console.log('llamado');
     return Number(this.props.billAmount) * Number(user.amount);
   };
 
@@ -28,7 +27,6 @@ class BillUsers extends React.Component {
     let maxAmount = 0;
     const otherUsers = this.props.users.filter(user => user.id !== userId);
     otherUsers.map(user => (maxAmount = Number(user.amount) + maxAmount));
-    console.log('maximo', (1 - maxAmount).toFixed(2));
     return (1 - maxAmount).toFixed(2);
   };
 

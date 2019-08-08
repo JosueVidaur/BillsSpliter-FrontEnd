@@ -67,7 +67,7 @@ class AllBills extends React.Component {
                   <CreateBill
                     dimmer={this.props.dimmer}
                     isOpen={this.props.isEditOpen}
-                    onCloseCreateBill={this.props.onEdit}
+                    onCloseCreateBill={this.props.onCloseEdit}
                   />
                   <Button
                     onClick={this.props.onEdit}

@@ -7,27 +7,18 @@ class ShowAllBills extends React.Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false,
-      isEditOpen: false
+      isOpen: false
     };
   }
 
   show = dimmer => () => this.setState({ dimmer, isOpen: true });
   close = () => this.setState({ isOpen: false });
 
-  showEdit = dimmer => () => this.setState({ dimmer, isEditOpen: true });
-  closeEdit = () => this.setState({ isEditOpen: false });
-
   render() {
     const dimmer = this.state;
     return (
       <Container>
-        <AllBills
-          isEditOpen={this.state.isEditOpen}
-          dimmer={dimmer}
-          onCloseEdit={this.closeEdit}
-          onEdit={this.showEdit('blurring')}
-        />
+        <AllBills />
         <CreateBill
           isOpen={this.state.isOpen}
           dimmer={dimmer}

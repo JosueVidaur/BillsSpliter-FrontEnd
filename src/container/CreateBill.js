@@ -13,8 +13,6 @@ class CreateBill extends React.Component {
     };
   }
 
-  addNewContact;
-
   setBillAmount = amount => {
     this.setState({
       billAmount: amount

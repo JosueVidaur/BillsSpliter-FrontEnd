@@ -2,9 +2,6 @@ import React from 'react';
 import { Label } from 'semantic-ui-react';
 
 export default class Contact extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   sendContact() {
     this.props.handlerClick(this.props.user);
   }
