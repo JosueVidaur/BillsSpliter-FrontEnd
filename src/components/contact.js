@@ -1,4 +1,5 @@
 import React from 'react';
+import { Label } from 'semantic-ui-react';
 
 export default class Contact extends React.Component {
   constructor(props) {
@@ -11,7 +12,12 @@ export default class Contact extends React.Component {
     return (
       <div style={{ width: '90%', margin: '5px' }}>
         <div style={{ width: '70%', display: 'inline-block' }}>
-          <label>
+          <span>
+            <Label style={{ fontSize: '16px', marginRight: '10px' }} circular>
+              {this.props.user.firstName.charAt(0)}
+            </Label>
+          </span>
+          <label style={{ fontWeight: 'bold', color: '#383428' }}>
             {this.props.user.firstName} {this.props.user.lastName}
           </label>
         </div>
