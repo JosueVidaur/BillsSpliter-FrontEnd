@@ -17,14 +17,18 @@ class EditBill extends React.Component {
     };
   }
 
-  handleAmoutChange = modifiedContact => {
-    let oldContacts = this.state.bill.customers;
-    oldContacts = oldContacts.map(contact => {
-      if (contact.id == modifiedContact.id) {
-        contact = modifiedContact;
-        contact.added = true;
+  handleAmoutChange = modifiedContactAmount => {
+    let currentCustomers = this.state.bill.customers;
+    let currentBill = this.state.bill;
+    currentCustomers = currentCustomers.map(customer => {
+      if (customer.id === modifiedContactAmount.id) {
+        customer.amount = modifiedContactAmount.amount;
       }
-      return contact;
+      return customer;
+    });
+    currentBill.customers = currentCustomers;
+    this.setState({
+      bill: currentBill
     });
   };
 
@@ -33,27 +37,31 @@ class EditBill extends React.Component {
     if (!currentCustomers.find(customer => customer.id === user.id)) {
       currentCustomers.push(user);
     }
+    let currentBill = this.state.bill;
+    currentBill.customers = currentCustomers;
     this.setState({
-      customers: currentCustomers
+      bill: currentBill
     });
   };
 
   setBillAmount = amount => {
+    let currentBill = this.state.bill;
+    currentBill.totalAmount = amount;
     this.setState({
-      totalAmount: amount
+      bill: currentBill
     });
   };
 
   removeContactFromBill = user => {
-    console.log('borrarUser', user);
     let currentCustomers = this.state.bill.customers;
-    currentCustomers = currentCustomers.filter(customer => {
-      if (!(customer.id === user.id)) {
-        return customer;
-      }
-      this.setState({
-        customers: currentCustomers
-      });
+    let currentBill = this.state.bill;
+    currentCustomers = currentCustomers.filter(
+      customer => customer.id !== user.id
+    );
+    currentBill.customers = currentCustomers;
+    currentBill.customers.amount = 0;
+    this.setState({
+      bill: currentBill
     });
   };
 
