@@ -42,7 +42,7 @@ class BillForm extends React.Component {
             type='number'
             min='0'
             name='totalAmount'
-            value={this.state.totalAmount}
+            value={this.props.billAmount}
             placeholder='Amount to pay'
             onChange={this.handleBillAmountChange}
           />
