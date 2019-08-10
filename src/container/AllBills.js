@@ -2,6 +2,7 @@ import React from 'react';
 import AllBillsData from './AllBillsData';
 import { Button } from 'semantic-ui-react';
 import CreateBill from './CreateBill';
+import EditBill from '../components/EditBill';
 
 class AllBills extends React.Component {
   constructor() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Contact from '../components/contact';
-import Data from '../components/contactsData';
+import ContactsData from '../components/contactsData';
 import { Container, Button, Form, Modal } from 'semantic-ui-react';
 
 class Contacts extends React.Component {
@@ -42,7 +42,7 @@ class Contacts extends React.Component {
           <h1 style={{ textAlign: 'center', color: '#282929' }}>Contacts</h1>
         </div>
         <Container textAlign='left'>
-          {Data.map(elem => (
+          {ContactsData.map(elem => (
             <Contact editable={false} key={elem.id} user={elem} />
           ))}
         </Container>
