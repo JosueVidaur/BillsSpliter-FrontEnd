@@ -8,10 +8,25 @@ class AllBills extends React.Component {
   constructor() {
     super();
     this.state = {
-      bills: [{ customers: [] }]
+      bills: [{ customers: [] }],
+      isEditOpen: false,
+      currentBill: 0
     };
   }
 
+  onEditOpen = (dimmer, id) => () => {
+    this.setState({
+      dimmer,
+      isEditOpen: true,
+      currentBill: id
+    });
+  };
+
+  onEditClose = () => {
+    this.setState({
+      isEditOpen: false
+    });
+  };
   componentDidMount() {
     this.setState({
       bills: AllBillsData
@@ -19,6 +34,7 @@ class AllBills extends React.Component {
   }
 
   render() {
+    const dimmer = this.state;
     return (
       <div>
         {this.state.bills.map(bill => {
@@ -67,14 +83,9 @@ class AllBills extends React.Component {
               })}
               {!bill.completed ? (
                 <div>
-                  <CreateBill
-                    dimmer={this.props.dimmer}
-                    isOpen={this.props.isEditOpen}
-                    onCloseCreateBill={this.props.onCloseEdit}
-                  />
                   <Button
                     style={{ position: 'absolute', bottom: '20px' }}
-                    onClick={this.props.onEdit}
+                    onClick={this.onEditOpen('blurring', bill.id)}
                     color='green'
                     size='small'
                   >
@@ -87,6 +98,15 @@ class AllBills extends React.Component {
             </div>
           );
         })}
+        {this.state.currentBill ? (
+          <EditBill
+            billId={this.state.currentBill}
+            isEditOpen={this.state.isEditOpen}
+            onEditClose={this.onEditClose}
+          />
+        ) : (
+          ''
+        )}
       </div>
     );
   }

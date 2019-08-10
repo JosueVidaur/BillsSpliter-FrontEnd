@@ -40,7 +40,7 @@ const BillsData = [
     id: 3,
     place: 'Kentuky',
     totalAmount: 200,
-    completed: false,
+    completed: true,
     customers: [
       {
         id: 1,
