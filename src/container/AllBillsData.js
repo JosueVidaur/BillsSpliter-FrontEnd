@@ -35,6 +35,28 @@ const BillsData = [
         amount: 1
       }
     ]
+  },
+  {
+    id: 3,
+    place: 'Kentuky',
+    totalAmount: 200,
+    completed: false,
+    customers: [
+      {
+        id: 1,
+        firstName: 'Josue',
+        lastName: 'Vidaur',
+        phone: '',
+        amount: 1
+      },
+      {
+        id: 2,
+        firstName: 'Carlos',
+        lastName: 'Martinez',
+        phone: '',
+        amount: 0.6
+      }
+    ]
   }
 ];
 export default BillsData;

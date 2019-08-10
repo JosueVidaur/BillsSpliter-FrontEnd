@@ -1,4 +1,7 @@
 body {
   background-color: #fafafa;
-  padding-top: 48px;
+}
+
+a:hover {
+  background-color: black;
 }

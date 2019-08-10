@@ -31,7 +31,9 @@ class AllBills extends React.Component {
                 marginLeft: '5%',
                 border: '1px solid rgb(204, 204, 204)',
                 boxShadow: 'rgb(204, 204, 204) 2px 0px 2px',
-                backgroundColor: 'rgb(248, 247, 243)'
+                backgroundColor: 'rgb(248, 247, 243)',
+                marginBottom: '20px',
+                position: 'relative'
               }}
             >
               <h1 style={{ textAlign: 'center' }}>{bill.place}</h1>
@@ -70,6 +72,7 @@ class AllBills extends React.Component {
                     onCloseCreateBill={this.props.onCloseEdit}
                   />
                   <Button
+                    style={{ position: 'absolute', bottom: '20px' }}
                     onClick={this.props.onEdit}
                     color='green'
                     size='small'
