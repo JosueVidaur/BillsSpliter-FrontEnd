@@ -1,14 +1,42 @@
 import React from 'react';
 import Contact from '../components/contact';
-import ContactsData from '../components/contactsData';
+import axios from 'axios';
 import { Container, Button, Form, Modal } from 'semantic-ui-react';
 
 class Contacts extends React.Component {
   constructor() {
     super();
     this.state = {
-      openContactModal: false
+      firstName: '',
+      lastName: '',
+      phone: '',
+      openContactModal: false,
+      contacts: []
     };
+  }
+
+  handleChange = event => {
+    console.log('evento', event.target.value);
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+  addNewContact = event => {
+    axios.post('http://localhost:8000/api/contacts/1', {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      phone: this.state.phone
+    });
+    this.setState({
+      openContactModal: false
+    });
+  };
+
+  async componentDidMount() {
+    const { data } = await axios.get('http://localhost:8000/api/contacts/1');
+    this.setState({
+      contacts: data
+    });
   }
   showAddContact = dimmer => () => {
     this.setState({ dimmer, openContactModal: true });
@@ -42,7 +70,7 @@ class Contacts extends React.Component {
           <h1 style={{ textAlign: 'center', color: '#282929' }}>Contacts</h1>
         </div>
         <Container textAlign='left'>
-          {ContactsData.map(elem => (
+          {this.state.contacts.map(elem => (
             <Contact editable={false} key={elem.id} user={elem} />
           ))}
         </Container>
@@ -63,9 +91,30 @@ class Contacts extends React.Component {
           <Modal.Content>
             <Form onSubmit={this.addNewContact}>
               <Form.Group widths='equal'>
-                <Form.Input label='First Name' placeholder='First Name' />
-                <Form.Input label='Last Name' placeholder='Last Name' />
-                <Form.Input label='Phone' placeholder='Phone Number' />
+                <Form.Input
+                  name='firstName'
+                  label='First Name'
+                  onChange={this.handleChange}
+                  placeholder='First Name'
+                  value={this.state.firstName}
+                  required
+                />
+                <Form.Input
+                  name='lastName'
+                  value={this.state.lastName}
+                  onChange={this.handleChange}
+                  label='Last Name'
+                  placeholder='Last Name'
+                  required
+                />
+                <Form.Input
+                  name='phone'
+                  value={this.state.phone}
+                  onChange={this.handleChange}
+                  label='Phone'
+                  placeholder='Phone Number'
+                  required
+                />
               </Form.Group>
               <Button onClick={this.closeAddContact} color='black'>
                 Cancel

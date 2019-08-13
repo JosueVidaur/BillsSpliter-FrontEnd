@@ -1,7 +1,12 @@
 import React from 'react';
 import { Label } from 'semantic-ui-react';
+import axios from 'axios'
 
 class NavBar extends React.Component {
+  async componentDidMount() {
+    const user = axios.get('/api/user/bills/:user')
+  }
+
   render() {
     const imageProps = {
       avatar: true,

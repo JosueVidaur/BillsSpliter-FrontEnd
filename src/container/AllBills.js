@@ -1,7 +1,6 @@
 import React from 'react';
-import AllBillsData from './AllBillsData';
+import axios from 'axios';
 import { Button } from 'semantic-ui-react';
-import CreateBill from './CreateBill';
 import EditBill from '../components/EditBill';
 
 class AllBills extends React.Component {
@@ -27,9 +26,10 @@ class AllBills extends React.Component {
       isEditOpen: false
     });
   };
-  componentDidMount() {
+  async componentDidMount() {
+    const { data } = await axios.get('http://localhost:8000/api/user/bills/1');
     this.setState({
-      bills: AllBillsData
+      bills: data
     });
   }
 
@@ -77,7 +77,9 @@ class AllBills extends React.Component {
                   >
                     <spam>{customer.firstName} </spam>
                     <spam>{customer.lastName}</spam>
-                    <spam style={{ float: 'right' }}>{customer.amount}</spam>
+                    <spam style={{ float: 'right' }}>
+                      {Number(customer.amount * bill.totalAmount)}
+                    </spam>
                   </div>
                 );
               })}

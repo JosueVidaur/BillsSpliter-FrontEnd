@@ -1,5 +1,5 @@
 import React from 'react';
-import Data from '../components/contactsData';
+import axios from 'axios';
 import BillForm from '../components/BillForm';
 import Contact from '../components/contact';
 import { Modal } from 'semantic-ui-react';
@@ -18,10 +18,11 @@ class CreateBill extends React.Component {
       billAmount: amount
     });
   };
-
-  componentDidMount() {
+  /* */
+  async componentDidMount() {
+    const { data } = await axios.get('http://localhost:8000/api/contacts/1');
     this.setState({
-      contacts: Data
+      contacts: data
     });
   }
 
@@ -44,6 +45,7 @@ class CreateBill extends React.Component {
     oldContacts = oldContacts.map(contact => {
       if (contact.id == user.id) {
         contact.added = true;
+        contact.amount = 0;
       }
       return contact;
     });
@@ -78,7 +80,7 @@ class CreateBill extends React.Component {
           <Modal.Header>New Bill</Modal.Header>
           <Modal.Content style={{ display: 'flex' }} contacts>
             <div style={{ width: '30%' }}>
-              {Data.map(elem => (
+              {this.state.contacts.map(elem => (
                 <Contact
                   editable={true}
                   key={elem.id}

@@ -19,27 +19,27 @@ class Bills extends React.Component {
   render() {
     const { isOpen, dimmer } = this.state;
     return (
-      // <Container>
-      //   <Contacts />
-      //   <CreateBill
-      //     isOpen={isOpen}
-      //     dimmer={dimmer}
-      //     onCloseCreateBill={this.close}
-      //   />
-      //   <RecentBills />
-      //   <Button
-      //     size='huge'
-      //     style={{ marginLeft: '40%', marginTop: '120px', marginRight: '30px' }}
-      //     color='green'
-      //     onClick={this.show('blurring')}
-      //   >
-      //     New Bill
-      //   </Button>
-      //   <Button size='huge' color='teal'>
-      //     All Bills
-      //   </Button>
-      // </Container>
-      <ShowAllBills />
+      <Container>
+        <Contacts />
+        <CreateBill
+          isOpen={isOpen}
+          dimmer={dimmer}
+          onCloseCreateBill={this.close}
+        />
+        <RecentBills />
+        <Button
+          size='huge'
+          style={{ marginLeft: '40%', marginTop: '120px', marginRight: '30px' }}
+          color='green'
+          onClick={this.show('blurring')}
+        >
+          New Bill
+        </Button>
+        <Button size='huge' color='teal'>
+          All Bills
+        </Button>
+      </Container>
+      //<ShowAllBills />
     );
   }
 }
