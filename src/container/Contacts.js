@@ -70,7 +70,10 @@ class Contacts extends React.Component {
         </div>
         <Container textAlign='left'>
           {this.state.contacts.map(elem => (
-            <Contact editable={false} key={elem.id} user={elem} />
+            <div>
+              <Contact editable={false} key={elem.id} user={elem} />
+              <Button circular icon='delete' />
+            </div>
           ))}
         </Container>
 

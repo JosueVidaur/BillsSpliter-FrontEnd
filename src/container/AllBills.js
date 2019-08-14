@@ -13,6 +13,17 @@ class AllBills extends React.Component {
     };
   }
 
+  deleteBill = async event => {
+    await axios.delete(`http://localhost:8000/api/bills/${event.target.name}`);
+    this.fetchData();
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.fetchData();
+    }
+  }
+
   onEditOpen = (dimmer, id) => () => {
     this.setState({
       dimmer,
@@ -26,6 +37,7 @@ class AllBills extends React.Component {
       isEditOpen: false
     });
   };
+
   async componentDidMount() {
     await this.fetchData();
   }
@@ -101,6 +113,15 @@ class AllBills extends React.Component {
               ) : (
                 ''
               )}
+              <Button
+                style={{ position: 'absolute', bottom: '20px', right: '20px' }}
+                onClick={this.deleteBill}
+                name={bill.id}
+                color='red'
+                size='small'
+              >
+                Delete
+              </Button>
             </div>
           );
         })}

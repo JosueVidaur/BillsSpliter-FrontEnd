@@ -15,6 +15,7 @@ class CreateBill extends React.Component {
   }
 
   createBill = async event => {
+    event.preventDefault();
     const customers = this.state.contacts.filter(
       contact => contact.added === true
     );
@@ -23,6 +24,7 @@ class CreateBill extends React.Component {
       totalAmount: this.state.billAmount,
       contacts: customers
     });
+    this.props.onCloseCreateBill();
   };
 
   setPlace = place => {
