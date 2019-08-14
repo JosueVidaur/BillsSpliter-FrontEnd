@@ -19,7 +19,6 @@ class Contacts extends React.Component {
     const contactId = event.target.name
       ? event.target.name
       : event.target.parentElement.name;
-    console.log('delete contact', contactId);
     await axios.delete(`http://localhost:8000/api/contacts/${contactId}`);
     this.fetchContacts();
   };

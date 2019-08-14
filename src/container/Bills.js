@@ -3,7 +3,6 @@ import CreateBill from './CreateBill';
 import RecentBills from './RecentBills';
 import Contacts from './Contacts';
 import { Container, Button } from 'semantic-ui-react';
-import ShowAllBills from './ShowAllBills';
 
 class Bills extends React.Component {
   constructor() {
@@ -35,11 +34,7 @@ class Bills extends React.Component {
         >
           New Bill
         </Button>
-        <Button size='huge' color='teal'>
-          All Bills
-        </Button>
       </Container>
-      //<ShowAllBills />
     );
   }
 }

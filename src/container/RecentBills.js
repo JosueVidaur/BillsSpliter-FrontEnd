@@ -30,7 +30,7 @@ class RecentBills extends React.Component {
               borderBottom: '2px solid rgb(204, 204, 204)'
             }}
           >
-            Recent Bills
+            Your Bills
           </h1>
           <AllBills />
         </div>

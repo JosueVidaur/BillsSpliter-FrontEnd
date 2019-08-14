@@ -50,7 +50,6 @@ class AllBills extends React.Component {
   };
 
   render() {
-    const dimmer = this.state;
     return (
       <div>
         {this.state.bills.map(bill => {
@@ -73,7 +72,7 @@ class AllBills extends React.Component {
               <div
                 style={{
                   display: 'inline-block',
-                  webkitTextStroke: '0.1em',
+                  WebkitTextStroke: '0.1em',
                   fontSize: '16px',
                   width: '100%',
                   marginBottom: '20px',
