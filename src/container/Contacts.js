@@ -15,13 +15,22 @@ class Contacts extends React.Component {
     };
   }
 
+  deleteContact = async event => {
+    const contactId = event.target.name
+      ? event.target.name
+      : event.target.parentElement.name;
+    console.log('delete contact', contactId);
+    await axios.delete(`http://localhost:8000/api/contacts/${contactId}`);
+    this.fetchContacts();
+  };
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
-  addNewContact = event => {
-    axios.post('http://localhost:8000/api/contacts/1', {
+  addNewContact = async event => {
+    await axios.post('http://localhost:8000/api/contacts/1', {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       phone: this.state.phone
@@ -29,9 +38,14 @@ class Contacts extends React.Component {
     this.setState({
       openContactModal: false
     });
+    this.fetchContacts();
   };
 
   async componentDidMount() {
+    this.fetchContacts();
+  }
+
+  async fetchContacts() {
     const { data } = await axios.get('http://localhost:8000/api/contacts/1');
     this.setState({
       contacts: data
@@ -70,9 +84,21 @@ class Contacts extends React.Component {
         </div>
         <Container textAlign='left'>
           {this.state.contacts.map(elem => (
-            <div>
+            <div style={{ display: '-webkit-inline-box', width: '100%' }}>
               <Contact editable={false} key={elem.id} user={elem} />
-              <Button circular icon='delete' />
+              <Button
+                name={elem.id}
+                circular
+                color='red'
+                icon='delete'
+                size='mini'
+                style={{
+                  marginTop: '10px',
+                  color: 'white',
+                  display: 'inline-block'
+                }}
+                onClick={this.deleteContact}
+              />
             </div>
           ))}
         </Container>

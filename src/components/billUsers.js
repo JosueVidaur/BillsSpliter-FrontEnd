@@ -35,16 +35,17 @@ class BillUsers extends React.Component {
     return (
       <div>
         {this.props.users.map(user => (
-          <div>
+          <div style={{ marginBottom: '10px' }}>
             <Label
               size='large'
               color='white'
               key={user.id}
-              style={{ display: 'inline-block' }}
+              style={{ display: 'inline-block', width: '35%' }}
             >
               {user.firstName} {user.lastName}
             </Label>
             <Input
+              style={{ width: '25%', marginLeft: '5%' }}
               label={{ basic: true, content: '%' }}
               labelPosition='right'
               size='mini'

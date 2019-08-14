@@ -7,7 +7,7 @@ export default class Contact extends React.Component {
   }
   render() {
     return (
-      <div style={{ width: '90%', margin: '5px' }}>
+      <div style={{ width: '80%', margin: '5px' }}>
         <div style={{ width: '70%', display: 'inline-block' }}>
           <span>
             <Label style={{ fontSize: '16px', marginRight: '10px' }} circular>

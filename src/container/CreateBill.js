@@ -9,7 +9,7 @@ class CreateBill extends React.Component {
     super();
     this.state = {
       place: '',
-      billAmount: 0,
+      billAmount: '',
       contacts: []
     };
   }
@@ -98,7 +98,7 @@ class CreateBill extends React.Component {
         >
           <Modal.Header>New Bill</Modal.Header>
           <Modal.Content style={{ display: 'flex' }} contacts>
-            <div style={{ width: '30%' }}>
+            <div style={{ width: '40%' }}>
               {this.state.contacts.map(elem => (
                 <Contact
                   editable={true}
@@ -108,7 +108,7 @@ class CreateBill extends React.Component {
                 />
               ))}
             </div>
-            <div>
+            <div style={{ width: '50%' }}>
               <BillForm
                 createBill={this.createBill}
                 billAmount={this.state.billAmount}

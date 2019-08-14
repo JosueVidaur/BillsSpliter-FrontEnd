@@ -80,6 +80,15 @@ class AllBills extends React.Component {
                   borderBottom: '2px solid rgb(204, 204, 204)'
                 }}
               >
+                <p
+                  style={{
+                    color: '#6d6d6d',
+                    WebkitTextStroke: 'thin',
+                    textAlign: 'center'
+                  }}
+                >
+                  {new Date(bill.createdAt).toLocaleDateString()}
+                </p>
                 <span>Total expend </span>
                 <span style={{ float: 'right' }}> {bill.totalAmount}</span>
               </div>

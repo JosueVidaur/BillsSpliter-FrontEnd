@@ -23,7 +23,7 @@ class EditBill extends React.Component {
     const updateObj = {
       place: this.state.bill.place,
       totalAmount: this.state.bill.totalAmount,
-      completed: false,
+      completed: true,
       contacts: this.state.bill.customers
     };
     await axios.put(
@@ -117,8 +117,9 @@ class EditBill extends React.Component {
         open={this.props.isEditOpen}
         onClose={this.props.onEditClose}
       >
+        <Modal.Header>Edit Bill</Modal.Header>
         <Modal.Content style={{ display: 'flex' }}>
-          <div style={{ width: '30%' }}>
+          <div style={{ width: '40%' }}>
             {this.state.contacts.map(elem => (
               <Contact
                 editable={true}
@@ -128,18 +129,20 @@ class EditBill extends React.Component {
               />
             ))}
           </div>
-          <BillForm
-            place={this.state.bill.place}
-            isEdit={this.props.isEditOpen}
-            setPlace={this.setPlace}
-            createBill={this.updateBill}
-            billAmount={this.state.bill.totalAmount}
-            setBillAmount={this.setBillAmount}
-            onRemove={this.removeContactFromBill}
-            addedContacts={this.state.bill.customers}
-            handleAmoutChange={this.handleAmoutChange}
-            close={this.props.onEditClose}
-          />
+          <div style={{ width: '50%' }}>
+            <BillForm
+              place={this.state.bill.place}
+              isEdit={this.props.isEditOpen}
+              setPlace={this.setPlace}
+              createBill={this.updateBill}
+              billAmount={this.state.bill.totalAmount}
+              setBillAmount={this.setBillAmount}
+              onRemove={this.removeContactFromBill}
+              addedContacts={this.state.bill.customers}
+              handleAmoutChange={this.handleAmoutChange}
+              close={this.props.onEditClose}
+            />
+          </div>
         </Modal.Content>
       </Modal>
     );

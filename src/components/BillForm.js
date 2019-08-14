@@ -30,23 +30,27 @@ class BillForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.props.createBill}>
-          <Input
-            type='text'
-            name='place'
-            value={this.props.place}
-            placeholder='Place Name'
-            onChange={this.handlePlaceChange}
-            required
-          />
-          <Input
-            type='number'
-            min='1'
-            name='totalAmount'
-            value={this.props.billAmount}
-            placeholder='Amount to pay'
-            onChange={this.handleBillAmountChange}
-            required
-          />
+          <div style={{ width: '100%', marginBottom: '20px' }}>
+            <Input
+              style={{ marginLeft: '7%' }}
+              type='text'
+              name='place'
+              value={this.props.place}
+              placeholder='Place Name'
+              onChange={this.handlePlaceChange}
+              required
+            />
+            <Input
+              style={{ marginLeft: '5%' }}
+              type='number'
+              min='1'
+              name='totalAmount'
+              value={this.props.billAmount}
+              placeholder='Amount to pay'
+              onChange={this.handleBillAmountChange}
+              required
+            />
+          </div>
           <BillUsers
             billAmount={this.props.billAmount}
             onRemove={this.props.onRemove}
