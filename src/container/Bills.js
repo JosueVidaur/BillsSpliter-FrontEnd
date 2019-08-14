@@ -8,19 +8,21 @@ class Bills extends React.Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      isOpen: false,
+      contacts: []
     };
   }
 
   show = dimmer => () => this.setState({ dimmer, isOpen: true });
   close = () => this.setState({ isOpen: false });
-
+  contactsUpdated = contacts => this.setState({ contacts });
   render() {
     const { isOpen, dimmer } = this.state;
     return (
       <Container>
-        <Contacts />
+        <Contacts onContactsUpdated={this.contactsUpdated} />
         <CreateBill
+          contacts={this.state.contacts}
           isOpen={isOpen}
           dimmer={dimmer}
           onCloseCreateBill={this.close}

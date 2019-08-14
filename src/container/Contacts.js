@@ -37,7 +37,8 @@ class Contacts extends React.Component {
     this.setState({
       openContactModal: false
     });
-    this.fetchContacts();
+    await this.fetchContacts();
+    this.props.onContactsUpdated(this.state.contacts);
   };
 
   async componentDidMount() {

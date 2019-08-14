@@ -40,10 +40,20 @@ class CreateBill extends React.Component {
   };
   /* */
   async componentDidMount() {
+    this.fetchContacts();
+  }
+
+  fetchContacts = async () => {
     const { data } = await axios.get('http://localhost:8000/api/contacts/1');
     this.setState({
       contacts: data
     });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.fetchContacts();
+    }
   }
 
   removeContactFromBill = user => {
