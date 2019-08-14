@@ -85,19 +85,23 @@ class Contacts extends React.Component {
           {this.state.contacts.map(elem => (
             <div style={{ display: '-webkit-inline-box', width: '100%' }}>
               <Contact editable={false} key={elem.id} user={elem} />
-              <Button
-                name={elem.id}
-                circular
-                color='red'
-                icon='delete'
-                size='mini'
-                style={{
-                  marginTop: '10px',
-                  color: 'white',
-                  display: 'inline-block'
-                }}
-                onClick={this.deleteContact}
-              />
+              {elem.id === 1 ? (
+                ''
+              ) : (
+                <Button
+                  name={elem.id}
+                  circular
+                  color='red'
+                  icon='delete'
+                  size='mini'
+                  style={{
+                    marginTop: '10px',
+                    color: 'white',
+                    display: 'inline-block'
+                  }}
+                  onClick={this.deleteContact}
+                />
+              )}
             </div>
           ))}
         </Container>
