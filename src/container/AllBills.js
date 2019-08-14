@@ -27,11 +27,15 @@ class AllBills extends React.Component {
     });
   };
   async componentDidMount() {
+    await this.fetchData();
+  }
+
+  fetchData = async () => {
     const { data } = await axios.get('http://localhost:8000/api/user/bills/1');
     this.setState({
       bills: data
     });
-  }
+  };
 
   render() {
     const dimmer = this.state;
@@ -64,8 +68,8 @@ class AllBills extends React.Component {
                   borderBottom: '2px solid rgb(204, 204, 204)'
                 }}
               >
-                <spam>Total expend </spam>
-                <spam style={{ float: 'right' }}> {bill.totalAmount}</spam>
+                <span>Total expend </span>
+                <span style={{ float: 'right' }}> {bill.totalAmount}</span>
               </div>
               {bill.customers.map(customer => {
                 return (
@@ -75,11 +79,11 @@ class AllBills extends React.Component {
                       marginBottom: '20px'
                     }}
                   >
-                    <spam>{customer.firstName} </spam>
-                    <spam>{customer.lastName}</spam>
-                    <spam style={{ float: 'right' }}>
-                      {Number(customer.amount * bill.totalAmount)}
-                    </spam>
+                    <span>{customer.firstName} </span>
+                    <span>{customer.lastName}</span>
+                    <span style={{ float: 'right' }}>
+                      {Number((customer.amount / 100) * bill.totalAmount)}
+                    </span>
                   </div>
                 );
               })}
@@ -102,6 +106,7 @@ class AllBills extends React.Component {
         })}
         {this.state.currentBill ? (
           <EditBill
+            afterUpdate={this.fetchData}
             billId={this.state.currentBill}
             isEditOpen={this.state.isEditOpen}
             onEditClose={this.onEditClose}
