@@ -13,7 +13,8 @@ class BillUsers extends React.Component {
   };
 
   personalAmount = user => {
-    return Number(this.props.billAmount) * Number(user.amount);
+    const amount = Number(this.props.billAmount) * Number(user.amount / 100);
+    return Math.round(amount * 100) / 100;
   };
 
   removeContact = event => {
@@ -27,7 +28,7 @@ class BillUsers extends React.Component {
     let maxAmount = 0;
     const otherUsers = this.props.users.filter(user => user.id !== userId);
     otherUsers.map(user => (maxAmount = Number(user.amount) + maxAmount));
-    return (1 - maxAmount).toFixed(2);
+    return (100 - maxAmount).toFixed(2);
   };
 
   render() {
@@ -50,7 +51,7 @@ class BillUsers extends React.Component {
               type='number'
               min='0'
               max={this.personalPercent(user.id)}
-              step='0.1'
+              step='1'
               onChange={this.sendAmount}
               value={user.amount}
               placeholder='Personal Amount'
