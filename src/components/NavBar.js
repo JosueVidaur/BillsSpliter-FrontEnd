@@ -1,10 +1,20 @@
 import React from 'react';
 import { Label } from 'semantic-ui-react';
-import axios from 'axios'
+import axios from 'axios';
 
 class NavBar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      user: ''
+    };
+  }
   async componentDidMount() {
-    const user = axios.get('/api/user/bills/:user')
+    const user = await axios.get('http://localhost:8000/api/login/test');
+    const name = user.data.firstName + ' ' + user.data.lastName;
+    this.setState({
+      user: name
+    });
   }
 
   render() {
@@ -58,7 +68,7 @@ class NavBar extends React.Component {
           <Label
             style={{ float: 'right', marginRight: '5px', marginTop: '5px' }}
             as='a'
-            content='User'
+            content={this.state.user}
             image={imageProps}
           />
         </ul>

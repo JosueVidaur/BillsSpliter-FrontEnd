@@ -8,10 +8,28 @@ class CreateBill extends React.Component {
   constructor() {
     super();
     this.state = {
+      place: '',
       billAmount: 0,
       contacts: []
     };
   }
+
+  createBill = async event => {
+    const customers = this.state.contacts.filter(
+      contact => contact.added === true
+    );
+    await axios.post('http://localhost:8000/api/createBill/1', {
+      place: this.state.place,
+      totalAmount: this.state.billAmount,
+      contacts: customers
+    });
+  };
+
+  setPlace = place => {
+    this.setState({
+      place: place
+    });
+  };
 
   setBillAmount = amount => {
     this.setState({
@@ -63,7 +81,6 @@ class CreateBill extends React.Component {
       }
       return contact;
     });
-
     this.setState({
       contacts: oldContacts
     });
@@ -91,11 +108,14 @@ class CreateBill extends React.Component {
             </div>
             <div>
               <BillForm
+                createBill={this.createBill}
                 billAmount={this.state.billAmount}
                 setBillAmount={this.setBillAmount}
+                setPlace={this.setPlace}
                 onRemove={this.removeContactFromBill}
                 addedContacts={this.state.contacts.filter(c => c.added)}
                 handleAmoutChange={this.handleAmoutChange}
+                close={this.props.onCloseCreateBill}
               />
             </div>
           </Modal.Content>

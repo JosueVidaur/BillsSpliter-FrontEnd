@@ -14,6 +14,7 @@ class BillForm extends React.Component {
   }
 
   handlePlaceChange = event => {
+    this.props.setPlace(event.target.value);
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -25,26 +26,26 @@ class BillForm extends React.Component {
       [event.target.name]: event.target.value
     });
   };
-
-  handlerSubmit = () => {};
   render() {
     return (
       <div>
-        <form onSubmit={this.handlerSubmit}>
+        <form onSubmit={this.props.createBill}>
           <Input
             type='text'
             name='place'
-            value={this.state.place}
+            value={this.props.place}
             placeholder='Place Name'
             onChange={this.handlePlaceChange}
+            required
           />
           <Input
             type='number'
-            min='0'
+            min='1'
             name='totalAmount'
             value={this.props.billAmount}
             placeholder='Amount to pay'
             onChange={this.handleBillAmountChange}
+            required
           />
           <BillUsers
             billAmount={this.props.billAmount}
@@ -52,16 +53,11 @@ class BillForm extends React.Component {
             handleOnChange={this.props.handleAmoutChange}
             users={this.props.addedContacts}
           />
-          <Button color='black' onClick={this.close}>
+          <Button type='button' color='black' onClick={this.props.close}>
             Cancel
           </Button>
-          <Button
-            positive
-            icon='checkmark'
-            labelPosition='right'
-            onClick={this.close}
-          >
-            Create
+          <Button positive icon='checkmark' labelPosition='right'>
+            {this.props.isEdit ? 'Complete' : 'Create'}
           </Button>
         </form>
       </div>
