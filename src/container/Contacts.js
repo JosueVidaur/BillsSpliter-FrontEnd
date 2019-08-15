@@ -19,7 +19,7 @@ class Contacts extends React.Component {
     const contactId = event.target.name
       ? event.target.name
       : event.target.parentElement.name;
-    await axios.delete(`http://localhost:8000/api/contacts/${contactId}`);
+    await axios.delete(`${process.env.BACKEND_URL}/contacts/${contactId}`);
     this.fetchContacts();
   };
 
@@ -29,7 +29,7 @@ class Contacts extends React.Component {
     });
   };
   addNewContact = async event => {
-    await axios.post('http://localhost:8000/api/contacts/1', {
+    await axios.post(`${process.env.BACKEND_URL}/contacts/1`, {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       phone: this.state.phone
@@ -46,7 +46,7 @@ class Contacts extends React.Component {
   }
 
   async fetchContacts() {
-    const { data } = await axios.get('http://localhost:8000/api/contacts/1');
+    const { data } = await axios.get(`${process.env.BACKEND_URL}/contacts/1`);
     this.setState({
       contacts: data
     });

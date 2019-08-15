@@ -14,7 +14,7 @@ class AllBills extends React.Component {
   }
 
   deleteBill = async event => {
-    await axios.delete(`http://localhost:8000/api/bills/${event.target.name}`);
+    await axios.delete(`${process.env.BACKEND_URL}/bills/${event.target.name}`);
     this.fetchData();
   };
 
@@ -43,7 +43,7 @@ class AllBills extends React.Component {
   }
 
   fetchData = async () => {
-    const { data } = await axios.get('http://localhost:8000/api/user/bills/1');
+    const { data } = await axios.get(`${process.env.BACKEND_URL}/user/bills/1`);
     this.setState({
       bills: data
     });

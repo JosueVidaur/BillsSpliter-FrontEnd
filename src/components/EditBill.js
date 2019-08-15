@@ -27,7 +27,7 @@ class EditBill extends React.Component {
       contacts: this.state.bill.customers
     };
     await axios.put(
-      'http://localhost:8000/api/bills/' + this.props.billId,
+      `${process.env.BACKEND_URL}/bills/${this.props.billId}`,
       updateObj
     );
     await this.props.afterUpdate();
@@ -93,9 +93,9 @@ class EditBill extends React.Component {
 
   fetchData = async () => {
     const currentBill = await axios.get(
-      'http://localhost:8000/api/bills/' + this.props.billId
+      `${process.env.BACKEND_URL}/bills/${this.props.billId}`
     );
-    const { data } = await axios.get('http://localhost:8000/api/contacts/1');
+    const { data } = await axios.get(`${process.env.BACKEND_URL}/contacts/1`);
     this.setState({
       contacts: data,
       bill: currentBill.data

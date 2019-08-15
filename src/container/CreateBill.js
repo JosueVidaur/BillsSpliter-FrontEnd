@@ -19,7 +19,7 @@ class CreateBill extends React.Component {
     const customers = this.state.contacts.filter(
       contact => contact.added === true
     );
-    await axios.post('http://localhost:8000/api/createBill/1', {
+    await axios.post(`${process.env.BACKEND_URL}/createBill/1`, {
       place: this.state.place,
       totalAmount: this.state.billAmount,
       contacts: customers
@@ -44,7 +44,7 @@ class CreateBill extends React.Component {
   }
 
   fetchContacts = async () => {
-    const { data } = await axios.get('http://localhost:8000/api/contacts/1');
+    const { data } = await axios.get(`${process.env.BACKEND_URL}/contacts/1`);
     this.setState({
       contacts: data
     });

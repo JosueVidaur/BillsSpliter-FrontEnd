@@ -10,7 +10,7 @@ class NavBar extends React.Component {
     };
   }
   async componentDidMount() {
-    const user = await axios.get('http://localhost:8000/api/user/test');
+    const user = await axios.get(`${process.env.BACKEND_URL}/user/test`);
     const name = user.data.firstName + ' ' + user.data.lastName;
     this.setState({
       user: name
