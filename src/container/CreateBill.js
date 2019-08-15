@@ -38,7 +38,7 @@ class CreateBill extends React.Component {
       billAmount: amount
     });
   };
-  /* */
+
   async componentDidMount() {
     this.fetchContacts();
   }

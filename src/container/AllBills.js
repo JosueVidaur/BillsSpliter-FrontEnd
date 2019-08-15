@@ -58,7 +58,7 @@ class AllBills extends React.Component {
               style={{
                 float: 'left',
                 width: '45%',
-                height: '300px',
+                height: '400px',
                 padding: '0px 30px 30px',
                 marginLeft: '5%',
                 border: '1px solid rgb(204, 204, 204)',
